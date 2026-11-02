@@ -1,168 +1,221 @@
-# 🏠 Predict House Prices with Linear Regression
+# 🏠 House Price Prediction using Linear Regression
 
-An end-to-end Machine Learning project demonstrating Multiple Linear Regression to predict median house prices in California districts using the **California Housing Dataset** and **Scikit-Learn**.
-
----
-
-## 📋 Overview
-
-This project implements a Multiple Linear Regression model to analyze and predict median house values (`MedHouseVal`) across various California block groups. By analyzing demographic, structural, and geographic attributes—such as median income, house age, average room count, and geographical coordinates—the model learns the mathematical relationship between housing features and market valuations.
+An end-to-end Machine Learning project that predicts median house prices in California districts using **Multiple Linear Regression** and the **California Housing Dataset**.
 
 ---
 
-## 📊 Dataset: California Housing
+## 📋 Project Overview
 
-The dataset is loaded directly via `sklearn.datasets.fetch_california_housing`. It contains **20,640 records** with **8 input features** and **1 continuous target variable**.
+This project focuses on predicting median house prices in California using a supervised Machine Learning algorithm called Multiple Linear Regression.
 
-### Features
+The model analyzes different housing-related features, such as median income, house age, average rooms, population, and geographical location, to understand their relationship with house prices.
+
+The main objective is to build a regression model, train it using the available housing data, make predictions, visualize the results, and evaluate the model's performance using different evaluation metrics.
+
+---
+
+## 🎯 Project Objectives
+
+- Understand and explore the California Housing Dataset.
+- Perform data analysis and visualization.
+- Identify the relationship between housing features and house prices.
+- Implement Multiple Linear Regression.
+- Train and test the Machine Learning model.
+- Predict median house prices.
+- Evaluate model performance using regression metrics.
+
+---
+
+## 📊 Dataset Description
+
+The project uses the **California Housing Dataset**, available through the Scikit-Learn library.
+
+The dataset contains:
+
+- **Total Records:** 20,640
+- **Input Features:** 8
+- **Target Variable:** 1
+
+### Input Features
 
 | Feature | Description |
 | :--- | :--- |
-| **`MedInc`** | Median income in block group (in tens of thousands of USD) |
-| **`HouseAge`** | Median house age in block group (years) |
-| **`AveRooms`** | Average number of rooms per household |
-| **`AveBedrms`** | Average number of bedrooms per household |
-| **`Population`** | Block group population |
-| **`AveOccup`** | Average number of household members |
-| **`Latitude`** | Block group latitude coordinate |
-| **`Longitude`** | Block group longitude coordinate |
+| `MedInc` | Median income in a block group |
+| `HouseAge` | Median house age in years |
+| `AveRooms` | Average number of rooms per household |
+| `AveBedrms` | Average number of bedrooms per household |
+| `Population` | Block group population |
+| `AveOccup` | Average number of household members |
+| `Latitude` | Latitude coordinate |
+| `Longitude` | Longitude coordinate |
 
 ### Target Variable
 
-* **`MedHouseVal`**: Median house value for California districts, expressed in hundreds of thousands of dollars (\$100,000s).
+**`MedHouseVal`** – Median house value for California districts, expressed in hundreds of thousands of dollars ($100,000s).
 
 ---
 
-## 🧠 Methodology: Multiple Linear Regression
+## 🧠 Machine Learning Algorithm: Multiple Linear Regression
 
-Multiple Linear Regression models the linear relationship between several independent predictor variables ($X_1, X_2, \dots, X_n$) and the dependent target variable ($y$):
+Multiple Linear Regression is a supervised Machine Learning algorithm used to predict a continuous numerical value based on two or more independent variables.
 
-$$y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_n X_n + \epsilon$$
+### Mathematical Equation
+
+\[
+y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \dots + \beta_nX_n + \epsilon
+\]
 
 Where:
-* $y$ is the predicted median house value (`MedHouseVal`)
-* $\beta_0$ is the intercept term
-* $\beta_1, \dots, \beta_n$ are the feature coefficients (weights)
-* $X_1, \dots, X_n$ are the input housing features
-* $\epsilon$ represents the residual error
 
-The model minimizes the **Mean Squared Error (MSE)** via Ordinary Least Squares (OLS) to determine the best-fitting hyperplane.
+- \(y\) = Predicted house value
+- \(\beta_0\) = Intercept
+- \(\beta_1,\beta_2,\dots,\beta_n\) = Model coefficients
+- \(X_1,X_2,\dots,X_n\) = Input features
+- \(\epsilon\) = Error term
 
----
-
-## 📈 Project Pipeline
-
-The workflow in [`program.ipynb`](./program.ipynb) follows these key steps:
-
-1. **Data Loading & Inspection**: Fetching the dataset with `fetch_california_housing(as_frame=True)` and inspecting descriptive statistics using `df.describe()`.
-2. **Feature & Target Separation**: Isolating independent feature matrix $X$ (all 8 features) and dependent target vector $y$ (`MedHouseVal`).
-3. **Train-Test Split**: Splitting the 20,640 records into training (80%, 16,512 samples) and testing (20%, 4,128 samples) sets using `train_test_split(..., test_size=0.2, random_state=42)`.
-4. **Model Training**: Fitting `LinearRegression()` on `X_train` and `y_train`.
-5. **Model Evaluation**: Making predictions on `X_test` and evaluating performance using Mean Squared Error (MSE) and $R^2$ Score.
-6. **Coefficient Interpretation**: Analyzing the model's intercept and learned feature coefficients.
-7. **Inference on New Data**: Demonstrating single-sample prediction with custom feature inputs in a Pandas DataFrame.
+The model uses the Ordinary Least Squares (OLS) method to find the best-fitting linear relationship between the input features and the target variable.
 
 ---
 
-## 📊 Performance Results
+## ⚙️ Project Workflow
 
-Evaluated on the test split (20% unseen data):
+The complete implementation is available in the [`House_Price_Prediction.ipynb`](./House_Price_Prediction.ipynb) notebook.
 
-| Metric | Value | Interpretation |
-| :--- | :--- | :--- |
-| **Mean Squared Error (MSE)** | `0.5559` | Average squared difference between actual and predicted valuations |
-| **Coefficient of Determination ($R^2$)** | `0.5758` | The model explains **~57.58%** of the variance in California median house values |
+The project follows these steps:
 
-### Model Parameters
+1. **Importing Libraries:** Import the required Python libraries.
+2. **Dataset Loading:** Load the California Housing Dataset.
+3. **Data Exploration:** Examine the dataset and understand its features.
+4. **Feature and Target Selection:** Separate independent variables (X) and the dependent variable (y).
+5. **Train-Test Split:** Divide the dataset into training and testing sets.
+6. **Model Building:** Create a Multiple Linear Regression model.
+7. **Model Training:** Train the model using the training dataset.
+8. **Prediction:** Predict house prices using the testing dataset.
+9. **Model Evaluation:** Calculate MSE, MAE, RMSE, and R² Score.
+10. **Data Visualization:** Visualize the relationship between median income and house prices and compare actual and predicted values.
 
-* **Intercept ($\beta_0$)**: `-37.0233`
+### Train-Test Split
 
-#### Feature Coefficients
+The dataset is divided into 80% training data and 20% testing data.
 
-| Feature | Coefficient | Impact & Direction |
-| :--- | :--- | :--- |
-| **`AveBedrms`** | `+0.7831` | Positive impact; higher average bedrooms relative to rooms correlates with higher value |
-| **`MedInc`** | `+0.4487` | Strong positive impact; higher median income significantly increases home value |
-| **`HouseAge`** | `+0.0097` | Slight positive impact on price |
-| **`Population`** | `-0.000002` | Negligible linear impact |
-| **`AveOccup`** | `-0.0035` | Slight negative correlation with occupancy count |
-| **`AveRooms`** | `-0.1233` | Negative coefficient when controlling for bedroom count |
-| **`Latitude`** | `-0.4198` | Geographic variation (southern locations generally trend higher) |
-| **`Longitude`** | `-0.4337` | Geographic variation (coastal/western locations generally trend higher) |
+| Dataset | Percentage | Number of Records |
+| :--- | :---: | :---: |
+| Training Data | 80% | 16,512 |
+| Testing Data | 20% | 4,128 |
+| **Total** | **100%** | **20,640** |
 
----
-
-## 🛠️ Tech Stack
-
-* **Language**: Python 3.x
-* **Machine Learning**: `scikit-learn`
-* **Data Manipulation**: `pandas`, `numpy`
-* **Development Environment**: Jupyter Notebook (`.ipynb`)
+The split is performed using `train_test_split()` with `test_size=0.2` and `random_state=42`.
 
 ---
 
-## 📦 Getting Started
+## 📈 Model Evaluation and Results
 
-### 1. Prerequisites & Installation
+The trained Linear Regression model is evaluated using the testing dataset.
 
-Clone the repository and install the required dependencies:
+The following evaluation metrics are used:
+
+| Evaluation Metric | Result | Description |
+| :--- | :---: | :--- |
+| **Mean Squared Error (MSE)** | `0.5559` | Measures the average squared difference between actual and predicted values. |
+| **Mean Absolute Error (MAE)** | `0.5332` | Measures the average absolute prediction error. |
+| **Root Mean Squared Error (RMSE)** | `0.7456` | Represents the square root of the Mean Squared Error. |
+| **R² Score** | `0.5758` | Indicates that the model explains approximately 57.58% of the variance in house prices. |
+
+### Result Interpretation
+
+The model achieved an R² Score of approximately 0.5758, indicating that it explains around 57.58% of the variation in median house prices in the testing dataset.
+
+The evaluation metrics help measure the difference between actual and predicted values and understand the overall performance of the model.
+
+---
+
+## 📊 Data Visualization
+
+The project includes the following visualizations:
+
+### 1. Median Income vs House Price
+
+A scatter plot showing the relationship between median income and median house prices.
+
+### 2. Actual vs Predicted House Prices
+
+A visualization comparing actual house prices with the values predicted by the Linear Regression model.
+
+These visualizations help understand the relationship between the dataset features and the model's prediction performance.
+
+---
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+| :--- | :--- |
+| **Python 3.x** | Programming language |
+| **Pandas** | Data manipulation and analysis |
+| **NumPy** | Numerical calculations |
+| **Matplotlib** | Data visualization |
+| **Scikit-Learn** | Machine Learning model and evaluation |
+| **Google Colab / Jupyter Notebook** | Development environment |
+
+---
+
+## ▶️ How to Run the Project
+
+### Step 1: Open the Notebook
+
+Open the `House_Price_Prediction.ipynb` file in Google Colab or Jupyter Notebook.
+
+### Step 2: Install Required Libraries
+
+Install the required Python libraries if they are not already installed.
 
 ```bash
-git clone https://github.com/<your-username>/Predict-House-Prices-with-Linear-Regression.git
-cd Predict-House-Prices-with-Linear-Regression
-pip install pandas numpy scikit-learn notebook
+pip install pandas numpy matplotlib scikit-learn
 ```
 
-### 2. Run the Notebook
+### Step 3: Execute the Notebook
 
-Launch Jupyter Notebook to view and run the analysis:
+Run all notebook cells in sequence.
 
-```bash
-jupyter notebook program.ipynb
-```
+### Step 4: View Results
 
-### 3. Quick Code Example
+Observe the model training, house price predictions, visualizations, and evaluation metrics.
 
-```python
-import pandas as pd
-from sklearn.datasets import fetch_california_housing
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
+---
 
-# 1. Load California Housing Dataset
-housing = fetch_california_housing(as_frame=True)
-df = housing.frame
+## 🎓 Learning Outcomes
 
-# 2. Separate Features and Target
-X = df.drop('MedHouseVal', axis=1)
-y = df['MedHouseVal']
+Through this project, I gained practical experience in:
 
-# 3. Train-Test Split (80/20)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+- Working with a real-world dataset.
+- Data exploration and analysis.
+- Understanding independent and dependent variables.
+- Preparing training and testing datasets.
+- Implementing Multiple Linear Regression.
+- Training a Machine Learning model.
+- Making predictions using a trained model.
+- Evaluating regression models using different metrics.
+- Visualizing actual and predicted values.
 
-# 4. Train Model
-model = LinearRegression()
-model.fit(X_train, y_train)
+---
 
-# 5. Make Prediction for New Input
-new_data = pd.DataFrame({
-    'MedInc': [5.0],
-    'HouseAge': [40.0],
-    'AveRooms': [5.0],
-    'AveBedrms': [3.0],
-    'Population': [5000.0],
-    'AveOccup': [2.0],
-    'Latitude': [37.88],
-    'Longitude': [-122.23]
-})
+## 🔮 Future Scope
 
-predicted_price = model.predict(new_data)
-print(f"Predicted Median House Value: ${predicted_price[0] * 100000:,.2f}")
-# Output: ~$443,508.18 (4.435 in $100k units)
-```
+- Experiment with other regression algorithms.
+- Improve prediction performance through feature engineering.
+- Compare different Machine Learning models.
+- Develop an interactive web application for house price prediction.
 
 ---
 
 ## 📄 License
 
-This project is licensed under the terms described in the [LICENSE](LICENSE) file.
+This project is licensed under the Apache License 2.0. See the [LICENSE](./LICENSE) file for details.
+
+---
+
+## 👩‍💻 Author
+
+**Saee Mahangare**
+
+B.Tech – Artificial Intelligence and Data Science
+
